@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+            http://maven.apache.org/POM/4.0.0
+            https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ========================================================= -->
+  <!-- PROJECT INFORMATION                                       -->
+  <!-- ========================================================= -->
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.employee</groupId>
+  <artifactId>EmployeeCRUD</artifactId>
+  <version>1.0</version>
+
+  <!-- We are deploying to Tomcat -->
+  <packaging>war</packaging>
+
+
+  <!-- ========================================================= -->
+  <!-- VERSION MANAGEMENT                                        -->
+  <!-- ========================================================= -->
+
+  <properties>
+
+    <!-- Java -->
+    <maven.compiler.release>21</maven.compiler.release>
+
+    <!-- Spring Framework -->
+    <spring.version>6.2.19</spring.version>
+
+    <!-- Hibernate ORM -->
+    <hibernate.version>6.6.58.Final</hibernate.version>
+
+    <!-- Lombok -->
+    <lombok.version>1.18.42</lombok.version>
+
+    <!-- Project encoding -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+  </properties>
+
+
+  <!-- ========================================================= -->
+  <!-- DEPENDENCIES                                               -->
+  <!-- ========================================================= -->
+
+  <dependencies>
+
+
+    <!-- ===================================================== -->
+    <!-- SPRING CORE                                             -->
+    <!-- ===================================================== -->
+
+    <!-- Spring Core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Spring Beans -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Spring Context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- SPRING MVC                                              -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- SPRING JDBC                                             -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- SPRING ORM                                              -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- SPRING TRANSACTION                                      -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- JAKARTA PERSISTENCE / JPA                               -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- HIBERNATE ORM                                           -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- POSTGRESQL JDBC DRIVER                                  -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.10</version>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- JSP / JSTL                                              -->
+    <!-- ===================================================== -->
+
+    <!-- JSTL implementation -->
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+
+
+    <!-- JSTL API -->
+    <dependency>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+
+    <!-- ===================================================== -->
+    <!-- SERVLET API                                             -->
+    <!-- ===================================================== -->
+
+    <!-- Tomcat provides this at runtime -->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- JSP API                                                 -->
+    <!-- ===================================================== -->
+
+    <!-- Tomcat provides this at runtime -->
+    <dependency>
+      <groupId>jakarta.servlet.jsp</groupId>
+      <artifactId>jakarta.servlet.jsp-api</artifactId>
+      <version>3.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- ===================================================== -->
+    <!-- LOMBOK                                                  -->
+    <!-- ===================================================== -->
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+
+  <!-- ========================================================= -->
+  <!-- BUILD                                                      -->
+  <!-- ========================================================= -->
+
+  <build>
+
+    <finalName>EmployeeCRUD</finalName>
+
+    <plugins>
+
+
+      <!-- ================================================= -->
+      <!-- MAVEN COMPILER                                     -->
+      <!-- ================================================= -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+
+        <configuration>
+
+          <release>21</release>
+
+          <!-- Lombok -->
+          <annotationProcessorPaths>
+
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+
+          </annotationProcessorPaths>
+
+        </configuration>
+
+      </plugin>
+
+
+      <!-- ================================================= -->
+      <!-- WAR PLUGIN                                         -->
+      <!-- ================================================= -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>
