@@ -16,24 +16,17 @@ public class EmployeeRepository {
     public Employee save(Employee employee) {
 
         if (employee.getId() == null) {
-
             entityManager.persist(employee);
-
-        } else {
-
-            employee = entityManager.merge(employee);
+            return employee;
         }
 
-        return employee;
+        return entityManager.merge(employee);
     }
 
     public List<Employee> findAll() {
 
         return entityManager
-                .createQuery(
-                        "SELECT e FROM Employee e",
-                        Employee.class
-                )
+                .createQuery("SELECT e FROM Employee e", Employee.class)
                 .getResultList();
     }
 
@@ -44,11 +37,9 @@ public class EmployeeRepository {
 
     public void deleteById(Long id) {
 
-        Employee employee =
-                entityManager.find(Employee.class, id);
+        Employee employee = entityManager.find(Employee.class, id);
 
         if (employee != null) {
-
             entityManager.remove(employee);
         }
     }

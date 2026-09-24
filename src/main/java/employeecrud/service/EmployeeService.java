@@ -1,6 +1,7 @@
 package employeecrud.service;
 
 import employeecrud.entity.Employee;
+import employeecrud.exception.EmployeeNotFoundException;
 import employeecrud.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,11 +33,27 @@ public class EmployeeService {
     @Transactional(readOnly = true)
     public Employee getEmployeeById(Long id) {
 
-        return employeeRepository.findById(id);
+        Employee employee = employeeRepository.findById(id);
+
+        if (employee == null) {
+            throw new EmployeeNotFoundException(
+                    "Employee not found with ID: " + id
+            );
+        }
+
+        return employee;
     }
 
     @Transactional
     public void deleteEmployee(Long id) {
+
+        Employee employee = employeeRepository.findById(id);
+
+        if (employee == null) {
+            throw new EmployeeNotFoundException(
+                    "Cannot delete. Employee not found with ID: " + id
+            );
+        }
 
         employeeRepository.deleteById(id);
     }

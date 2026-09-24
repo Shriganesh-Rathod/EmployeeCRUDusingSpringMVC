@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/employees")
@@ -23,6 +24,7 @@ public class EmployeeController {
 
     // =========================================================
     // READ ALL EMPLOYEES
+    // URL: GET /employees
     // =========================================================
 
     @GetMapping
@@ -38,7 +40,30 @@ public class EmployeeController {
 
 
     // =========================================================
+    // FIND / READ ONE EMPLOYEE
+    // URL: GET /employees/find?id=1
+    // =========================================================
+
+    @GetMapping("/find")
+    public String findEmployee(
+            @RequestParam("id") Long id,
+            Model model) {
+
+        Employee employee =
+                employeeService.getEmployeeById(id);
+
+        model.addAttribute(
+                "employee",
+                employee
+        );
+
+        return "employee-details";
+    }
+
+
+    // =========================================================
     // SHOW CREATE FORM
+    // URL: GET /employees/new
     // =========================================================
 
     @GetMapping("/new")
@@ -55,6 +80,7 @@ public class EmployeeController {
 
     // =========================================================
     // CREATE / UPDATE EMPLOYEE
+    // URL: POST /employees/save
     // =========================================================
 
     @PostMapping("/save")
@@ -70,6 +96,7 @@ public class EmployeeController {
 
     // =========================================================
     // SHOW EDIT FORM
+    // URL: GET /employees/edit/{id}
     // =========================================================
 
     @GetMapping("/edit/{id}")
@@ -91,6 +118,7 @@ public class EmployeeController {
 
     // =========================================================
     // DELETE EMPLOYEE
+    // URL: POST /employees/delete/{id}
     // =========================================================
 
     @PostMapping("/delete/{id}")

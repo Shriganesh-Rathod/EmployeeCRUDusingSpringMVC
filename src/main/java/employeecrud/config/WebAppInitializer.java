@@ -1,5 +1,7 @@
 package employeecrud.config;
 
+import employeecrud.filter.LoginFilter;
+import jakarta.servlet.Filter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebAppInitializer
@@ -26,6 +28,18 @@ public class WebAppInitializer
 
         return new String[]{
                 "/"
+        };
+    }
+
+    // =========================================================
+    // REGISTER SERVLET FILTERS
+    // =========================================================
+
+    @Override
+    protected Filter[] getServletFilters() {
+
+        return new Filter[]{
+                new LoginFilter()
         };
     }
 }

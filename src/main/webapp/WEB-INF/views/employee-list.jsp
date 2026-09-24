@@ -35,7 +35,10 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+
+        /* ============================= */
+        /* SIDEBAR                       */
+        /* ============================= */
 
         .sidebar {
             position: fixed;
@@ -122,14 +125,20 @@
             text-align: center;
         }
 
-        /* MAIN */
+
+        /* ============================= */
+        /* MAIN                          */
+        /* ============================= */
 
         .main {
             width: calc(100% - 245px);
             margin-left: 245px;
         }
 
-        /* TOPBAR */
+
+        /* ============================= */
+        /* TOPBAR                        */
+        /* ============================= */
 
         .topbar {
             height: 68px;
@@ -182,7 +191,10 @@
             font-weight: bold;
         }
 
-        /* CONTENT */
+
+        /* ============================= */
+        /* CONTENT                       */
+        /* ============================= */
 
         .content {
             padding: 32px;
@@ -192,6 +204,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
+            gap: 25px;
             margin-bottom: 26px;
         }
 
@@ -207,11 +220,64 @@
             font-size: 13px;
         }
 
+
+        /* ============================= */
+        /* HEADER ACTIONS                */
+        /* ============================= */
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .find-form {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .find-input {
+            width: 155px;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            background: white;
+            color: #111827;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .find-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .find-button {
+            height: 40px;
+            padding: 0 15px;
+            border: none;
+            border-radius: 7px;
+            background: #111827;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .find-button:hover {
+            background: #1f2937;
+            transform: translateY(-1px);
+        }
+
         .add-button {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 11px 17px;
+            height: 40px;
+            padding: 0 16px;
             border-radius: 7px;
             background: #2563eb;
             color: #ffffff;
@@ -227,7 +293,10 @@
             box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
         }
 
-        /* STATS */
+
+        /* ============================= */
+        /* STATS                         */
+        /* ============================= */
 
         .stats {
             display: grid;
@@ -265,7 +334,10 @@
             color: #059669;
         }
 
-        /* DIRECTORY */
+
+        /* ============================= */
+        /* DIRECTORY                     */
+        /* ============================= */
 
         .directory {
             background: #ffffff;
@@ -304,7 +376,10 @@
             font-weight: bold;
         }
 
-        /* TABLE */
+
+        /* ============================= */
+        /* TABLE                         */
+        /* ============================= */
 
         .table-wrapper {
             overflow-x: auto;
@@ -380,7 +455,10 @@
             font-weight: bold;
         }
 
-        /* ACTIONS */
+
+        /* ============================= */
+        /* ACTIONS                       */
+        /* ============================= */
 
         .actions {
             display: flex;
@@ -420,7 +498,10 @@
             background: #fee2e2;
         }
 
-        /* EMPTY STATE */
+
+        /* ============================= */
+        /* EMPTY STATE                   */
+        /* ============================= */
 
         .empty-state {
             min-height: 400px;
@@ -460,7 +541,32 @@
             margin-bottom: 22px;
         }
 
-        /* RESPONSIVE */
+
+        /* ============================= */
+        /* RESPONSIVE                    */
+        /* ============================= */
+
+        @media (max-width: 1000px) {
+
+            .page-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .find-form {
+                flex: 1;
+            }
+
+            .find-input {
+                width: 100%;
+            }
+
+        }
 
         @media (max-width: 900px) {
 
@@ -480,6 +586,7 @@
             .content {
                 padding: 22px;
             }
+
         }
 
         @media (max-width: 650px) {
@@ -505,11 +612,19 @@
                 display: none;
             }
 
-            .page-header {
+            .header-actions {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
+                align-items: stretch;
             }
+
+            .find-form {
+                width: 100%;
+            }
+
+            .add-button {
+                justify-content: center;
+            }
+
         }
 
     </style>
@@ -520,6 +635,11 @@
 <body>
 
 <div class="app">
+
+
+    <!-- ============================= -->
+    <!-- SIDEBAR                       -->
+    <!-- ============================= -->
 
     <aside class="sidebar">
 
@@ -550,6 +670,7 @@
                 Management
             </div>
 
+
             <a
                     href="<c:url value='/employees'/>"
                     class="active">
@@ -570,13 +691,38 @@
 
             </a>
 
+
+            <a
+                    href="#findEmployee">
+
+                <span class="nav-icon">⌕</span>
+
+                Find Employee
+
+            </a>
+
+              <a href="${pageContext.request.contextPath}/logout">
+
+                            <span class="nav-icon">↪</span>
+
+                            Logout
+
+                        </a>
+
+
         </nav>
 
     </aside>
 
 
+    <!-- ============================= -->
+    <!-- MAIN                          -->
+    <!-- ============================= -->
+
     <main class="main">
 
+
+        <!-- TOPBAR -->
 
         <header class="topbar">
 
@@ -609,8 +755,14 @@
         </header>
 
 
+        <!-- ============================= -->
+        <!-- CONTENT                       -->
+        <!-- ============================= -->
+
         <section class="content">
 
+
+            <!-- PAGE HEADER -->
 
             <div class="page-header">
 
@@ -627,18 +779,56 @@
                 </div>
 
 
-                <a
-                        href="<c:url value='/employees/new'/>"
-                        class="add-button">
+                <div class="header-actions">
 
-                    <span>+</span>
 
-                    Add Employee
+                    <!-- FIND EMPLOYEE -->
 
-                </a>
+                    <form
+                            id="findEmployee"
+                            class="find-form"
+                            method="get"
+                            action="<c:url value='/employees/find'/>">
+
+                        <input
+                                type="number"
+                                name="id"
+                                class="find-input"
+                                placeholder="Enter Employee ID"
+                                min="1"
+                                required>
+
+                        <button
+                                type="submit"
+                                class="find-button">
+
+                            Find Employee
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- ADD EMPLOYEE -->
+
+                    <a
+                            href="<c:url value='/employees/new'/>"
+                            class="add-button">
+
+                        <span>+</span>
+
+                        Add Employee
+
+                    </a>
+
+                </div>
 
             </div>
 
+
+            <!-- ============================= -->
+            <!-- STATS                         -->
+            <!-- ============================= -->
 
             <div class="stats">
 
@@ -685,9 +875,12 @@
 
                 </div>
 
-
             </div>
 
+
+            <!-- ============================= -->
+            <!-- DIRECTORY                     -->
+            <!-- ============================= -->
 
             <div class="directory">
 
@@ -720,6 +913,7 @@
 
                 <c:choose>
 
+
                     <c:when test="${not empty employees}">
 
                         <div class="table-wrapper">
@@ -731,15 +925,10 @@
                                 <tr>
 
                                     <th>ID</th>
-
                                     <th>Employee</th>
-
                                     <th>Email</th>
-
                                     <th>Department</th>
-
                                     <th>Salary</th>
-
                                     <th>Actions</th>
 
                                 </tr>
@@ -814,6 +1003,7 @@
 
                                             <div class="actions">
 
+
                                                 <a
                                                         href="<c:url value='/employees/edit/${employee.id}'/>"
                                                         class="edit-button">
@@ -838,6 +1028,7 @@
                                                     </button>
 
                                                 </form>
+
 
                                             </div>
 
@@ -888,7 +1079,9 @@
 
                     </c:otherwise>
 
+
                 </c:choose>
+
 
             </div>
 
